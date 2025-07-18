@@ -27,20 +27,20 @@ export default function Index() {
       name: 'Стандарт',
       minAmount: 1000,
       maxAmount: 25000,
-      dailyReturn: 1.8,
-      duration: 45,
+      dailyReturn: 50,
+      duration: 3,
       color: 'bg-gradient-to-r from-indigo-500 to-indigo-600',
-      features: ['Ежедневные выплаты', 'Приоритетная поддержка', 'Расширенная статистика', 'Реферальные бонусы']
+      features: ['Выплаты от 24 часов', 'Приоритетная поддержка', 'Расширенная статистика', 'Реферальные бонусы']
     },
     {
       id: 'premium',
       name: 'Премиум',
       minAmount: 5000,
       maxAmount: 100000,
-      dailyReturn: 2.5,
-      duration: 60,
+      dailyReturn: 50,
+      duration: 3,
       color: 'bg-gradient-to-r from-emerald-500 to-emerald-600',
-      features: ['Ежедневные выплаты', 'VIP поддержка', 'Персональный менеджер', 'Максимальные реферальные бонусы', 'Эксклюзивные отчеты']
+      features: ['Выплаты от 24 часов', 'VIP поддержка', 'Персональный менеджер', 'Максимальные реферальные бонусы', 'Эксклюзивные отчеты']
     }
   ];
 
