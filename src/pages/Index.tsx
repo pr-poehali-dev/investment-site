@@ -17,10 +17,10 @@ export default function Index() {
       name: 'Стартовый',
       minAmount: 500,
       maxAmount: 5000,
-      dailyReturn: 1.2,
-      duration: 30,
+      dailyReturn: 50,
+      duration: 3,
       color: 'bg-gradient-to-r from-orange-500 to-orange-600',
-      features: ['Ежедневные выплаты', 'Техподдержка', 'Базовая статистика']
+      features: ['Выплаты от 24 часов', 'Техподдержка', 'Базовая статистика']
     },
     {
       id: 'standard',
@@ -146,7 +146,7 @@ export default function Index() {
                       <div className="text-4xl font-bold text-gray-900 mb-2">
                         {plan.dailyReturn}%
                       </div>
-                      <div className="text-sm text-gray-600">ежедневно на {plan.duration} дней</div>
+                      <div className="text-sm text-gray-600">за {plan.duration} рабочих дня</div>
                     </div>
                     
                     <div className="space-y-2">
@@ -240,7 +240,7 @@ export default function Index() {
                       </div>
                     </div>
                     <div className="text-sm text-emerald-200">
-                      Период: {currentPlan.duration} дней
+                      Период: {currentPlan.duration} рабочих дня
                     </div>
                   </div>
                 </div>
