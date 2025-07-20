@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
-import PaymentCheckout from '@/components/PaymentCheckout';
+import PaymentProcessor from '@/components/PaymentProcessor';
 
 export default function Index() {
   const [investmentAmount, setInvestmentAmount] = useState(1000);
@@ -111,10 +111,14 @@ export default function Index() {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto p-0">
-                  <PaymentCheckout 
+                  <PaymentProcessor 
                     selectedPlan={currentPlan}
                     amount={investmentAmount}
                     onClose={() => setShowCheckout(false)}
+                    onSuccess={(paymentData) => {
+                      console.log('Оплата успешна:', paymentData);
+                      setShowCheckout(false);
+                    }}
                   />
                 </DialogContent>
               </Dialog>
@@ -183,10 +187,14 @@ export default function Index() {
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto p-0">
-                        <PaymentCheckout 
+                        <PaymentProcessor 
                           selectedPlan={plan}
                           amount={investmentAmount >= plan.minAmount && investmentAmount <= plan.maxAmount ? investmentAmount : plan.minAmount}
                           onClose={() => setShowCheckout(false)}
+                          onSuccess={(paymentData) => {
+                            console.log('Оплата успешна:', paymentData);
+                            setShowCheckout(false);
+                          }}
                         />
                       </DialogContent>
                     </Dialog>
