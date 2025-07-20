@@ -4,12 +4,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
+import PaymentCheckout from '@/components/PaymentCheckout';
 
 export default function Index() {
   const [investmentAmount, setInvestmentAmount] = useState(1000);
   const [selectedPlan, setSelectedPlan] = useState('standard');
   const [referralCode, setReferralCode] = useState('');
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const plans = [
     {
@@ -100,10 +103,21 @@ export default function Index() {
               Начните инвестировать уже сегодня и получайте стабильный доход.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800">
-                <Icon name="Play" size={20} className="mr-2" />
-                Начать инвестировать
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800">
+                    <Icon name="Play" size={20} className="mr-2" />
+                    Начать инвестировать
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto p-0">
+                  <PaymentCheckout 
+                    selectedPlan={currentPlan}
+                    amount={investmentAmount}
+                    onClose={() => setShowCheckout(false)}
+                  />
+                </DialogContent>
+              </Dialog>
               <Button size="lg" variant="outline">
                 <Icon name="BarChart3" size={20} className="mr-2" />
                 Посмотреть статистику
@@ -158,12 +172,24 @@ export default function Index() {
                       ))}
                     </div>
                     
-                    <Button 
-                      className={`w-full ${plan.color} text-white hover:opacity-90`}
-                      onClick={() => setSelectedPlan(plan.id)}
-                    >
-                      Выбрать план
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button 
+                          className={`w-full ${plan.color} text-white hover:opacity-90`}
+                          onClick={() => setSelectedPlan(plan.id)}
+                        >
+                          <Icon name="CreditCard" size={16} className="mr-2" />
+                          Инвестировать
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto p-0">
+                        <PaymentCheckout 
+                          selectedPlan={plan}
+                          amount={investmentAmount >= plan.minAmount && investmentAmount <= plan.maxAmount ? investmentAmount : plan.minAmount}
+                          onClose={() => setShowCheckout(false)}
+                        />
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </CardContent>
               </Card>
