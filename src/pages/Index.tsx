@@ -73,10 +73,16 @@ export default function Index() {
               <a href="#calculator" className="text-gray-700 hover:text-indigo-600 transition-colors">Калькулятор</a>
               <a href="#referral" className="text-gray-700 hover:text-indigo-600 transition-colors">Реферальная программа</a>
             </nav>
-            <Button variant="outline" className="hidden md:flex" onClick={() => window.location.href = '/dashboard'}>
-              <Icon name="User" size={16} className="mr-2" />
-              Личный кабинет
-            </Button>
+            <div className="hidden md:flex space-x-2">
+              <Button variant="outline" onClick={() => window.location.href = '/login'}>
+                <Icon name="LogIn" size={16} className="mr-2" />
+                Вход инвестора
+              </Button>
+              <Button variant="outline" onClick={() => window.location.href = '/dashboard'}>
+                <Icon name="User" size={16} className="mr-2" />
+                Админ панель
+              </Button>
+            </div>
           </div>
         </div>
       </header>

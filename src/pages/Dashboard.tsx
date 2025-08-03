@@ -502,9 +502,13 @@ export default function Dashboard() {
                 <CardTitle>Быстрые действия</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button variant="outline" className="w-full justify-start">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start"
+                  onClick={() => window.location.href = '/admin/codes'}
+                >
                   <Icon name="Plus" size={16} className="mr-2" />
-                  Новая инвестиция
+                  Создать код инвестора
                 </Button>
                 <Button variant="outline" className="w-full justify-start">
                   <Icon name="Users" size={16} className="mr-2" />
